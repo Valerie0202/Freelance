@@ -4,10 +4,16 @@
 
 <head>
     <title>Freelance App</title>
+    <link rel="stylesheet" type="text/css" href="/pub/css/style.css">
 </head>
 
 <body>
 
-<h1>Welcome to Freelance</h1>
+<div class="nav">
+    <a href="/index">HOME</a>
+    <a href="/registration/register">SIGN UP</a>
+    <a href="/login/login">SIGN IN</a>
+    <a href="/login/logout">SIGN OUT</a>
+</div>
 
 <div class="container">
