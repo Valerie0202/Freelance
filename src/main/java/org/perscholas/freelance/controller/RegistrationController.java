@@ -6,6 +6,7 @@ import org.perscholas.freelance.database.entity.User;
 import org.perscholas.freelance.database.entity.UserRole;
 import org.perscholas.freelance.form.RegisterFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -26,6 +27,9 @@ public class RegistrationController {
 
     @Autowired
     private UserRoleDAO userRoleDao;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView register() throws Exception {
@@ -75,9 +79,9 @@ public class RegistrationController {
             user.setLastName(form.getLastName());
             user.setUsername(form.getUsername());
 
-//            String encryptedPassword = passwordEncoder.encode(form.getPassword());
-//            user.setPassword(encryptedPassword);
-            user.setPassword(form.getPassword());
+            String encryptedPassword = passwordEncoder.encode(form.getPassword());
+            user.setPassword(encryptedPassword);
+//            user.setPassword(form.getPassword());
 
             // if you are saving a new user without an id.  The return value of save will
             // create a new autoincremented ID record and return the user object with the new id populated
