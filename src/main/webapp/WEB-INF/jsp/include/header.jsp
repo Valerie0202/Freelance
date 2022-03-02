@@ -5,6 +5,7 @@
 <head>
     <title>Freelance App</title>
     <link rel="stylesheet" type="text/css" href="/pub/css/style.css">
+    <link rel="stylesheet" type="text/css" media="print" href="/pub/css/print.css"/>
 </head>
 
 <body>
