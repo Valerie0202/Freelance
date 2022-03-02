@@ -16,6 +16,7 @@
     <a href="/login/logout">SIGN OUT</a>
     <a href="/client/viewClients">VIEW CLIENTS</a>
     <a href="/client/createClient">CREATE CLIENT</a>
+    <a href="/invoice/createInvoice">CREATE INVOICE</a>
 </div>
 
 <div class="container">

@@ -26,7 +26,6 @@
     <%-- If the ID is not empty, we display the invoice and allow user to add lines --%>
     <c:otherwise>
         <h1>Add to Invoice</h1>
-        <%-- TODO add invoice display --%>
         <table border="1">
             <tr>
                 <td><b>Client</b></td>

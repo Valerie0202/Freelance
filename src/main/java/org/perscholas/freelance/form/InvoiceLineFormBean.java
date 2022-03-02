@@ -12,5 +12,6 @@ public class InvoiceLineFormBean {
     private Double price;
     private String notes;
     private Double quantity;
+    private Integer invoiceId;
 
 }

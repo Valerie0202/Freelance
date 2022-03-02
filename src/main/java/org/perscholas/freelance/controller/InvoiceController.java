@@ -57,11 +57,16 @@ public class InvoiceController {
             Invoice invoice = invoiceDao.findById(id);
             LOG.debug("Invoice passed in has ID of " + invoice.getId() + " and client is " + invoice.getClient());
             InvoiceFormBean form = new InvoiceFormBean();
+            Client client = invoice.getClient();
+
             form.setDate(invoice.getDate());
             form.setTitle(invoice.getTitle());
             form.setNotes(invoice.getNotes());
             form.setId(invoice.getId());
-            form.setClient(invoice.getClient());
+            form.setClient(client);
+            form.setClientName(client.getFirstName() + " " + client.getLastName());
+            LOG.debug("invoice.getClient() returns " + invoice.getClient());
+            LOG.debug("form.getClient() returns " + form.getClient());
 
             response.addObject("form", form);
 
@@ -96,7 +101,6 @@ public class InvoiceController {
         invoice.setUser(user);
         invoice.setClient(client);
         LOG.debug("User has just set the client");
-        invoice.setId(form.getId());
         invoice.setDate(form.getDate());
         invoice.setTitle(form.getTitle());
         invoice.setNotes(form.getNotes());
@@ -104,14 +108,15 @@ public class InvoiceController {
         invoice = invoiceDao.save(invoice);
         LOG.debug("Invoice was just saved");
 
-        response.setViewName("redirect:/invoice/createInvoice");
+        response.setViewName("redirect:/invoice/createInvoice?id="+invoice.getId());
         return response;
     }
 
     @RequestMapping(value = "/createInvoiceLineSubmit", method = { RequestMethod.POST, RequestMethod.GET })
-    public ModelAndView createInvoiceLineSubmit(InvoiceLineFormBean form, @RequestParam(required = false) Integer invoiceId) throws Exception {
+    public ModelAndView createInvoiceLineSubmit(InvoiceLineFormBean form) throws Exception {
         ModelAndView response = new ModelAndView();
         InvoiceLine line = new InvoiceLine();
+        Integer invoiceId = form.getInvoiceId();
         Invoice invoice = invoiceDao.findById(invoiceId);
 
         line.setInvoice(invoice);
@@ -123,7 +128,7 @@ public class InvoiceController {
 
         line = invoiceLineDao.save(line);
 
-        response.setViewName("redirect:/invoice/createInvoice");
+        response.setViewName("redirect:/invoice/createInvoice?id="+invoiceId);
         return response;
     }
 
