@@ -1,19 +1,37 @@
-<jsp:include page="../include/header.jsp"/>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
+<jsp:include page="../include/header.jsp" />
+
+<c:choose>
+    <c:when test="${empty form.id}">
+        <h1>Create New Client</h1>
+    </c:when>
+    <c:otherwise>
+        <h1>Edit Client Information</h1>
+    </c:otherwise>
+</c:choose>
 
 <form method="POST" action="/client/createClientSubmit">
 
-    <h2>Create an client</h2>
-
+    <input type="hidden" name="id" value="${form.id}">
     <div class="registerform">
-        <input type="text" name="firstName" placeholder="First Name">
-        <input type="text" name="lastName" placeholder="Last Name">
-        <input type="text" name="email" placeholder="Email">
-        <input type="text" name="homePhone" placeholder="Home Phone Number">
-        <input type="text" name="cellPhone" placeholder="Cell Phone Number">
-        <input type="text" name="address" placeholder="Address">
-        <textarea maxlength="500" name="notes">Notes (max 500 char)</textarea>
+        <input class="formInput" type="text" name="firstName" placeholder="First Name" value="${form.firstName}">
+        <input class="formInput" type="text" name="lastName" placeholder="Last Name"  value="${form.lastName}">
+        <input class="formInput" type="text" name="email" placeholder="Email"  value="${form.email}">
+        <input class="formInput" type="text" name="homePhone" placeholder="Home Phone Number"  value="${form.homePhone}">
+        <input class="formInput" type="text" name="cellPhone" placeholder="Cell Phone Number"  value="${form.cellPhone}">
+        <input class="formInput" type="text" name="address" placeholder="Address" value="${form.address}">
+        <textarea class="formInput" maxlength="500" name="notes" placeholder="Notes (max 500 char)">${form.notes}</textarea>
 
-        <button type="submit">Create client</button>
+        <c:choose>
+            <c:when test="${empty form.id}">
+                <button class="formInput" type="submit">Create</button>
+            </c:when>
+            <c:otherwise>
+                <button class="formInput" type="submit">Update</button>
+            </c:otherwise>
+        </c:choose>
+
     </div>
 </form>
 

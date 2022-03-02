@@ -1,7 +1,6 @@
 package org.perscholas.freelance.database.dao;
 
 import org.perscholas.freelance.database.entity.Client;
-import org.perscholas.freelance.database.entity.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

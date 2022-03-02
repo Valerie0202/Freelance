@@ -12,6 +12,7 @@
         <td><b>Cell Phone Number</b></td>
         <td><b>Address</b></td>
         <td><b>Notes</b></td>
+        <td><b>Edit</b></td>
     </tr>
     <c:forEach items="${clients}" var="client">
         <tr>
@@ -22,6 +23,7 @@
             <td>${client.cellPhone}</td>
             <td>${client.address}</td>
             <td>${client.notes}</td>
+            <td><a role="button" href="/client/createClient?id=${client.id}">Edit</a></td>
         </tr>
     </c:forEach>
 </table>

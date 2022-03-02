@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,9 +44,34 @@ public class ClientController {
     }
 
     @RequestMapping(value = "/createClient", method = RequestMethod.GET)
-    public ModelAndView createClient(HttpServletRequest request, HttpSession session) throws Exception {
+    public ModelAndView createClient(@RequestParam(required = false) Integer id) {
         ModelAndView response = new ModelAndView();
         response.setViewName("client/createClient");
+
+        if ( id != null ) {
+            // id has been passed to this form so it is an edit
+            Client client = clientDao.findById(id);
+
+            // populate the form bean with the data loaded from the database
+            ClientFormBean form = new ClientFormBean();
+            form.setEmail(client.getEmail());
+            form.setFirstName(client.getFirstName());
+            form.setLastName(client.getLastName());
+            form.setHomePhone(client.getHomePhone());
+            form.setCellPhone(client.getCellPhone());
+            form.setAddress(client.getAddress());
+            form.setNotes(client.getNotes());
+            // since we loaded this from the database we know the id field
+            form.setId(client.getId());
+
+            response.addObject("form", form);
+        } else {
+            // an id has not been passed so it is a create
+            // there is no data from the database so give an empty form bean
+            ClientFormBean form = new ClientFormBean();
+            response.addObject("form", form);
+        }
+
         return response;
     }
 

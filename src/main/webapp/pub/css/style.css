@@ -41,7 +41,7 @@
     flex-direction: column;
 }
 
-.registerform input, button {
+.formInput {
     width: 20%;
     padding: 0.2em;
     margin: 0.6em;
