@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //these are unsecured paths
                 .antMatchers("/pub/**","/error/**","/login/**","/search","/index","/registration/**").permitAll()
                 //these are secured paths
-                .antMatchers("/admin/**","/user/**").authenticated()
+                .antMatchers("/admin/**","/user/**","/client/**").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login/login")

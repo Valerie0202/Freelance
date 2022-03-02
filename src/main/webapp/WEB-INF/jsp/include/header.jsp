@@ -14,6 +14,8 @@
     <a href="/registration/register">SIGN UP</a>
     <a href="/login/login">SIGN IN</a>
     <a href="/login/logout">SIGN OUT</a>
+    <a href="/client/viewClients">VIEW CLIENTS</a>
+    <a href="/client/createClient">CREATE CLIENT</a>
 </div>
 
 <div class="container">
