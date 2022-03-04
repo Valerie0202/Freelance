@@ -4,6 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.perscholas.freelance.database.entity.Client;
 
+import java.util.Date;
+
+// TODO implement validation
+
 @Getter
 @Setter
 public class InvoiceFormBean {

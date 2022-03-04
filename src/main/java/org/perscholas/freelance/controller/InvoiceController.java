@@ -24,6 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
@@ -70,21 +72,27 @@ public class InvoiceController {
         if ( id != null ) {
             // Update
             Invoice invoice = invoiceDao.findById(id);
-            InvoiceFormBean form = new InvoiceFormBean();
-            Client client = invoice.getClient();
+            User invoiceUser = invoice.getUser();
+            if(invoiceUser.equals(user)) {
+                InvoiceFormBean form = new InvoiceFormBean();
+                Client client = invoice.getClient();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-            form.setDate(invoice.getDate());
-            form.setTitle(invoice.getTitle());
-            form.setNotes(invoice.getNotes());
-            form.setId(invoice.getId());
-            form.setClient(client);
-            form.setClientName(client.getFirstName() + " " + client.getLastName());
+                form.setDate(dateFormat.format(invoice.getDate()));
+                form.setTitle(invoice.getTitle());
+                form.setNotes(invoice.getNotes());
+                form.setId(invoice.getId());
+                form.setClient(client);
+                form.setClientName(client.getFirstName() + " " + client.getLastName());
 
-            response.addObject("form", form);
+                response.addObject("form", form);
 
-            List<InvoiceLine> invoiceLines = invoiceLineDao.getInvoiceLines(id);
+                List<InvoiceLine> invoiceLines = invoiceLineDao.getInvoiceLines(id);
 
-            response.addObject("invoiceLines", invoiceLines);
+                response.addObject("invoiceLines", invoiceLines);
+            } else {
+                response.setViewName("error/404");
+            }
 
         } else {
             // Create
@@ -105,10 +113,11 @@ public class InvoiceController {
         Invoice invoice = new Invoice();
         User user = getLoggedInUser();
         Client client = clientDao.findById(form.getClientId());
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         invoice.setUser(user);
         invoice.setClient(client);
-        invoice.setDate(form.getDate());
+        invoice.setDate(dateFormat.parse(form.getDate()));
         invoice.setTitle(form.getTitle());
         invoice.setNotes(form.getNotes());
         invoice.setTax(form.getTax());
@@ -141,19 +150,31 @@ public class InvoiceController {
     }
 
     @RequestMapping(value = {"/printInvoice"}, method = RequestMethod.GET)
-    public ModelAndView printInvoice(@RequestParam Integer id) throws Exception {
+    public ModelAndView printInvoice(@RequestParam(required = false) Integer id) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("invoice/printInvoice");
-        User user = getLoggedInUser();
-        Invoice invoice = invoiceDao.findById(id);
-        Client client = invoice.getClient();
-        List<InvoiceLine> invoiceLines = invoiceLineDao.getInvoiceLines(id);
-        LOG.debug(String.valueOf(invoiceLines));
+        if( id != null) {
+            User user = getLoggedInUser();
+            Invoice invoice = invoiceDao.findById(id);
+            User invoiceUser = invoice.getUser();
+            if(invoiceUser.equals(user)) {
+                Client client = invoice.getClient();
+                List<InvoiceLine> invoiceLines = invoiceLineDao.getInvoiceLines(id);
+                LOG.debug(String.valueOf(invoiceLines));
 
-        response.addObject("user", user);
-        response.addObject("client", client);
-        response.addObject("invoice", invoice);
-        response.addObject("invoiceLines", invoiceLines);
+                // TODO add Lambda
+
+                response.addObject("user", user);
+                response.addObject("client", client);
+                response.addObject("invoice", invoice);
+                response.addObject("invoiceLines", invoiceLines);
+            } else {
+                response.setViewName("error/404");
+            }
+
+        } else {
+            response.setViewName("error/404");
+        }
 
         return response;
     }

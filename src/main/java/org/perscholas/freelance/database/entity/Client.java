@@ -25,11 +25,8 @@ public class Client {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "cell_phone")
-    private String cellPhone;
-
-    @Column(name = "home_phone")
-    private String homePhone;
+    @Column(name = "phone")
+    private String phone;
 
     @Column(name = "address1")
     private String address1;

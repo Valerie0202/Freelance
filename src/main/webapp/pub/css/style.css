@@ -5,6 +5,8 @@
     --f-shadow: #00000060;
 }
 
+/* TODO style everything pretty */
+
 .nav {
     background-color: var(--f-red);
     overflow: hidden;

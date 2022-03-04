@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 // Represents the overall information of an invoice
@@ -19,7 +20,8 @@ public class Invoice {
     private Integer id;
 
     @Column(name = "date")
-    private String date;
+    @Temporal(TemporalType.DATE)
+    private Date date;
 
     @Column(name = "notes")
     private String notes;

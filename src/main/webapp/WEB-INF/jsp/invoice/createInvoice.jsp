@@ -67,7 +67,7 @@
                     </tr>
                 </c:forEach>
                 <tr>
-                    <th>Grand total</th>
+                    <th>Subtotal</th>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -89,6 +89,7 @@
                 <button class="formInput" type="submit">Add Line</button>
             </div>
         </form>
+        <a href="/invoice/printInvoice?id=${form.id}"><button>Print invoice</button></a>
     </c:otherwise>
 </c:choose>
 

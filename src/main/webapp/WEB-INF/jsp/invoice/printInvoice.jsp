@@ -57,13 +57,13 @@
             <c:forEach items="${invoiceLines}" var="line">
                 <tr>
                     <td>${line.item}</td>
-                    <td>$${line.price}</td>
-                    <td>${line.quantity}</td>
+                    <td><fmt:formatNumber value="${line.price}" pattern="$######0.00"/></td>
+                    <td><fmt:formatNumber value="${line.quantity}" pattern="###0.00"/></td>
                     <td>${line.notes}</td>
                     <td class="itemSubtotal">
                         <c:set var="lineTotal" scope="request" value="${line.price * line.quantity}"/>
                         <c:set var="subtotal" scope="request" value="${subtotal + lineTotal}"/>
-                        <c:out value="$${lineTotal}"/>
+                        <fmt:formatNumber value="${lineTotal}" pattern="$######0.00"/>
                     </td>
                 </tr>
             </c:forEach>
@@ -73,18 +73,22 @@
         <table>
             <tr>
                 <th>SUBTOTAL</th>
-                <th><c:out value="$${subtotal}"/></th>
+                <th><fmt:formatNumber value="${subtotal}" pattern="$######0.00"/></th>
             </tr>
             <tr>
                 <th>TAX RATE</th>
-                <th>${invoice.tax * 100}%</th>
+                <th><fmt:formatNumber value="${invoice.tax}" pattern="##0.00%"/></th>
             </tr>
             <tr>
                 <th>TOTAL TAX</th>
-                <th>$<fmt:formatNumber value="${invoice.tax * subtotal}" maxFractionDigits="2"/></th>
+                <th><fmt:formatNumber value="${invoice.tax * subtotal}" pattern="$######0.00"/></th>
             </tr>
         </table>
-        <p>TOTAL DUE: <span id="invoiceFinalTotal">$<fmt:formatNumber value="${(invoice.tax + 1) * subtotal}" maxFractionDigits="2"/></span></p>
+        <p>TOTAL DUE:
+            <span id="invoiceFinalTotal">
+            <fmt:formatNumber value="${(invoice.tax + 1) * subtotal}" pattern="$######0.00"/>
+            </span>
+        </p>
     </div>
 </div>
 

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "user")
 public class User {
 
-    // TODO fix this to match updated table (added phone, address1, address2)
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -41,4 +42,16 @@ public class User {
     @Column(name = "address2")
     private String address2;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id.equals(user.id) && username.equals(user.username) && password.equals(user.password) && Objects.equals(email, user.email) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(phone, user.phone) && Objects.equals(address1, user.address1) && Objects.equals(address2, user.address2);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, email, firstName, lastName, phone, address1, address2);
+    }
 }

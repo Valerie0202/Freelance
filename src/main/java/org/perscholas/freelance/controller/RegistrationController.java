@@ -39,6 +39,7 @@ public class RegistrationController {
         return response;
     }
 
+    // TODO clean up registration controller
     @RequestMapping(value = "/registerSubmit", method = { RequestMethod.POST, RequestMethod.GET })
     public ModelAndView registerSubmit(@Valid RegisterFormBean form, BindingResult errors) throws Exception {
         ModelAndView response = new ModelAndView();
@@ -70,6 +71,9 @@ public class RegistrationController {
             user.setFirstName(form.getFirstName());
             user.setLastName(form.getLastName());
             user.setUsername(form.getUsername());
+            user.setAddress1(form.getAddress1());
+            user.setAddress2(form.getAddress2());
+            user.setPhone(form.getPhone());
             user.setPassword(encryptedPassword);
             user = userDao.save(user);
 

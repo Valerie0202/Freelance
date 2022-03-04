@@ -3,6 +3,8 @@ package org.perscholas.freelance.form;
 import lombok.Getter;
 import lombok.Setter;
 
+// TODO implement validation
+
 @Getter
 @Setter
 public class InvoiceLineFormBean {

@@ -4,6 +4,8 @@ package org.perscholas.freelance.form;
 import lombok.Getter;
 import lombok.Setter;
 
+// TODO implement validation
+
 @Getter
 @Setter
 public class ClientFormBean {
@@ -14,8 +16,7 @@ public class ClientFormBean {
     private String email;
     private String address1;
     private String address2;
-    private String homePhone;
-    private String cellPhone;
+    private String phone;
     private String notes;
 
 }
