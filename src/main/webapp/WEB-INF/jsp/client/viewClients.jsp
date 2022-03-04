@@ -21,7 +21,7 @@
             <td>${client.email}</td>
             <td>${client.homePhone}</td>
             <td>${client.cellPhone}</td>
-            <td>${client.address}</td>
+            <td>${client.address1}, ${client.address2}</td>
             <td>${client.notes}</td>
             <td><a role="button" href="/client/createClient?id=${client.id}">Edit</a></td>
         </tr>

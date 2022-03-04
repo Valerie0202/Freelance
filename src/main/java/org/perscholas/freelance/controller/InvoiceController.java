@@ -111,6 +111,7 @@ public class InvoiceController {
         invoice.setDate(form.getDate());
         invoice.setTitle(form.getTitle());
         invoice.setNotes(form.getNotes());
+        invoice.setTax(form.getTax());
 
         invoice = invoiceDao.save(invoice);
 
@@ -140,9 +141,19 @@ public class InvoiceController {
     }
 
     @RequestMapping(value = {"/printInvoice"}, method = RequestMethod.GET)
-    public ModelAndView printInvoice(HttpServletRequest request, HttpSession session) throws Exception {
+    public ModelAndView printInvoice(@RequestParam Integer id) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("invoice/printInvoice");
+        User user = getLoggedInUser();
+        Invoice invoice = invoiceDao.findById(id);
+        Client client = invoice.getClient();
+        List<InvoiceLine> invoiceLines = invoiceLineDao.getInvoiceLines(id);
+        LOG.debug(String.valueOf(invoiceLines));
+
+        response.addObject("user", user);
+        response.addObject("client", client);
+        response.addObject("invoice", invoice);
+        response.addObject("invoiceLines", invoiceLines);
 
         return response;
     }

@@ -20,7 +20,8 @@
         <input class="formInput" type="text" name="email" placeholder="Email"  value="${form.email}">
         <input class="formInput" type="text" name="homePhone" placeholder="Home Phone Number"  value="${form.homePhone}">
         <input class="formInput" type="text" name="cellPhone" placeholder="Cell Phone Number"  value="${form.cellPhone}">
-        <input class="formInput" type="text" name="address" placeholder="Address" value="${form.address}">
+        <input class="formInput" type="text" name="address1" placeholder="Address Line 1" value="${form.address1}">
+        <input class="formInput" type="text" name="address2" placeholder="Address Line 2" value="${form.address2}">
         <textarea class="formInput" maxlength="500" name="notes" placeholder="Notes (max 500 char)">${form.notes}</textarea>
 
         <c:choose>

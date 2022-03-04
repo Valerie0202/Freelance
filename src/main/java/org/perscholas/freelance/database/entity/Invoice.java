@@ -27,6 +27,10 @@ public class Invoice {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "tax",
+            columnDefinition = "DECIMAL")
+    private Double tax;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

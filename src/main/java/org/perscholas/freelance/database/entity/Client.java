@@ -31,8 +31,11 @@ public class Client {
     @Column(name = "home_phone")
     private String homePhone;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "address1")
+    private String address1;
+
+    @Column(name = "address2")
+    private String address2;
 
     @Column(name = "notes")
     private String notes;

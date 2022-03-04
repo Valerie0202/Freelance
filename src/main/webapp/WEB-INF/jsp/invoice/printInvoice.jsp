@@ -1,4 +1,5 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="../include/header.jsp"/>
 
@@ -9,37 +10,37 @@
         <h2>INVOICE</h2>
     </div>
     <div class="invoiceTitle">
-        <h3>WI-FI NETWORK CONFIGURATION</h3>
-        <p>Wi-fi network was established in client's home</p>
+        <h3>${invoice.title}</h3>
+        <p>${invoice.notes}</p>
     </div>
     <div class="userInfo">
-        <p id="invoiceUserName">Valerie Smith</p>
-        <p>123 W Main Street</p>
-        <p>Charlotte, NC 28210</p>
-        <p>(800) 555-2300</p>
-        <p>valeriesmith0202@gmail.com</p>
+        <p id="invoiceUserName">${user.firstName} ${user.lastName}</p>
+        <p>${user.address1}</p>
+        <p>${user.address2}</p>
+        <p>${user.phone}</p>
+        <p>${user.email}</p>
     </div>
     <div class="clientInfo">
         <h3>BILL TO</h3>
-        <p id="invoiceClientName">Joe Edwards</p>
-        <p>321 E Main Street</p>
-        <p>Charlotte, NC 28210</p>
-        <p>(888) 555-6400</p>
-        <p>jedwards@gmail.com</p>
+        <p id="invoiceClientName">${client.firstName} ${client.lastName}</p>
+        <p>${client.address1}</p>
+        <p>${client.address2}</p>
+        <p>${client.cellPhone}</p>
+        <p>${client.email}</p>
     </div>
     <div class="invoiceReference">
         <table>
             <tr>
                 <th>INVOICE ID:</th>
-                <td>62509</td>
+                <td>${invoice.id}</td>
             </tr>
             <tr>
                 <th>CLIENT ID:</th>
-                <td>32500</td>
+                <td>${client.id}</td>
             </tr>
             <tr>
                 <th>DATE:</th>
-                <td>02-16-2022</td>
+                <td>${invoice.date}</td>
             </tr>
         </table>
     </div>
@@ -47,57 +48,43 @@
         <table>
             <tr>
                 <th>ITEM</th>
-                <th>QTY</th>
                 <th>UNIT PRICE</th>
+                <th>QTY</th>
                 <th>NOTES</th>
                 <th>TOTAL</th>
             </tr>
-            <tr>
-                <td>Modem</td>
-                <td>1</td>
-                <td>$65</td>
-                <td> </td>
-                <td>$65</td>
-            </tr>
-            <tr>
-                <td>Router</td>
-                <td>1</td>
-                <td>$79.50</td>
-                <td> </td>
-                <td>$79.50</td>
-            </tr>
-            <tr>
-                <td>Wi-fi repeater</td>
-                <td>2</td>
-                <td>$22.37</td>
-                <td>Purchase receipt attached in email</td>
-                <td>$44.74</td>
-            </tr>
-            <tr>
-                <td>Hours</td>
-                <td>2.25</td>
-                <td>$40</td>
-                <td> </td>
-                <td>$90</td>
-            </tr>
+            <c:set var="subtotal" scope="request" value="0"/>
+            <c:forEach items="${invoiceLines}" var="line">
+                <tr>
+                    <td>${line.item}</td>
+                    <td>$${line.price}</td>
+                    <td>${line.quantity}</td>
+                    <td>${line.notes}</td>
+                    <td class="itemSubtotal">
+                        <c:set var="lineTotal" scope="request" value="${line.price * line.quantity}"/>
+                        <c:set var="subtotal" scope="request" value="${subtotal + lineTotal}"/>
+                        <c:out value="$${lineTotal}"/>
+                    </td>
+                </tr>
+            </c:forEach>
         </table>
     </div>
     <div class="invoiceTotal">
         <table>
             <tr>
                 <th>SUBTOTAL</th>
-                <th>$297.24</th>
+                <th><c:out value="$${subtotal}"/></th>
             </tr>
             <tr>
                 <th>TAX RATE</th>
-                <th>8%</th>
+                <th>${invoice.tax * 100}%</th>
             </tr>
             <tr>
                 <th>TOTAL TAX</th>
-                <th>$22.34</th>
+                <th>$<fmt:formatNumber value="${invoice.tax * subtotal}" maxFractionDigits="2"/></th>
             </tr>
         </table>
-        <p>TOTAL DUE: <span id="invoiceFinalTotal">$319.58</span></p>
+        <p>TOTAL DUE: <span id="invoiceFinalTotal">$<fmt:formatNumber value="${(invoice.tax + 1) * subtotal}" maxFractionDigits="2"/></span></p>
     </div>
 </div>
 

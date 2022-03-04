@@ -17,6 +17,7 @@
                 </select>
                 <input class="formInput" type="text" name="title" placeholder="Project Title">
                 <input class="formInput" type="text" name="date" placeholder="Date">
+                <input class="formInput" type="text" name="tax" placeholder="Tax">
                 <textarea class="formInput" maxlength="500" name="notes" placeholder="Notes (max 100 char)"></textarea>
 
                 <button class="formInput" type="submit">Create</button>

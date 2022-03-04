@@ -59,7 +59,7 @@ public class ClientController {
             form.setLastName(client.getLastName());
             form.setHomePhone(client.getHomePhone());
             form.setCellPhone(client.getCellPhone());
-            form.setAddress(client.getAddress());
+            form.setAddress1(client.getAddress1());
             form.setNotes(client.getNotes());
             // since we loaded this from the database we know the id field
             form.setId(client.getId());
@@ -84,7 +84,7 @@ public class ClientController {
         client.setFirstName(form.getFirstName());
         client.setLastName(form.getLastName());
         client.setEmail(form.getEmail());
-        client.setAddress(form.getAddress());
+        client.setAddress1(form.getAddress1());
         client.setCellPhone(form.getCellPhone());
         client.setHomePhone(form.getHomePhone());
         client.setNotes(form.getNotes());
