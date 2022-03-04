@@ -1,13 +1,7 @@
-body * {
+body, body * {
     visibility: hidden;
 }
 
-.printable, .printable * {
+.invoice, .invoice * {
     visibility: visible;
-}
-
-.printable {
-    position: absolute;
-    left: 0;
-    top: 0;
 }

@@ -29,18 +29,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // if the incoming username or email is out found in the database
-        // this user will be null
-        // TODO if you want to login using username column you can change this to findByUsername or even findByUsernameOrEmail
         User user = userDao.findByEmail(username);
 
         if (user == null) {
-            // this means that the username was not found in the database so we are done
-            // and we can get out of here
             throw new UsernameNotFoundException("Username '" + username + "' not found in database");
         }
 
-        // we got here so it means the user was found in the database
         List<UserRole> userRoles = userRoleDao.getUserRoles(user.getId());
 
 
@@ -48,14 +42,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), springRoles);
     }
 
-//	private Collection<? extends GrantedAuthority> buildGrantAuthorities(List<Permission> permissions) {
-//		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-//		for (Permission permission : permissions) {
-//			authorities.add(new SimpleGrantedAuthority(permission.getName()));
-//		}
-//
-//		return authorities;
-//	}
 
     private Collection<? extends GrantedAuthority> buildGrantAuthorities(List<UserRole> userRoles) {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
@@ -63,9 +49,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         for (UserRole role : userRoles) {
             authorities.add(new SimpleGrantedAuthority(role.getUserRole().toString()));
         }
-
-        // always add the user role
-        //authorities.add(new SimpleGrantedAuthority(UserRoleEnum.USER.toString()));
 
         return authorities;
     }

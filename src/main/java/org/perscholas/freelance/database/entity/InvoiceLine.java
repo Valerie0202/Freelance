@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+// Represents an individual line from an invoice
 @Getter
 @Setter
 @Entity

@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+
+// Represents the overall information of an invoice
 @Getter
 @Setter
 @Entity

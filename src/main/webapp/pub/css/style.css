@@ -41,8 +41,124 @@
     flex-direction: column;
 }
 
-.formInput {
+.registerform * {
     width: 20%;
     padding: 0.2em;
     margin: 0.6em;
+}
+
+.invoice {
+    display: grid;
+    grid-template-columns: 15% 50% 30%;
+    grid-template-rows: 5% 6% 11% 11% min-content 20% 5%;
+    column-gap: 2.5%;
+    row-gap: 2%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: sans-serif;
+    width: 100%;
+    height: 100%;
+}
+
+.invoice th, .invoice td {
+    padding: 0.2em;
+}
+
+.invoiceHeader {
+    grid-area: 1 / 1 / span 1 / span 3;
+
+    border-bottom: 1px solid black;
+}
+
+.invoiceTitle {
+    grid-area: 2 / 1 / span 1 / span 2;
+}
+
+.invoiceTitle * {
+    margin: 0;
+    padding: 0;
+}
+
+.userInfo {
+    grid-area: 3 / 1 / span 1 / span 2;
+}
+
+.userInfo p {
+    margin: 0;
+    padding: 0;
+}
+
+#invoiceUserName, #invoiceClientName {
+    font-weight: bold;
+}
+
+.clientInfo {
+    grid-area: 4 / 1 / span 1 / span 2;
+}
+
+.clientInfo p, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.invoiceReference {
+    grid-area: 2 / 3 / span 2 / span 1;
+}
+
+.invoiceReference * {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.invoiceReference th, .invoiceTotal th {
+    text-align: right;
+}
+
+.invoiceTable {
+    grid-area: 5 / 1 / span 1 / span 3;
+}
+
+.invoiceTable table {
+    width: 100%;
+}
+
+.invoiceTable * {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.invoiceTotal {
+    grid-area: 6 / 3 / span 1 / span 1;
+    justify-self: end;
+}
+
+.testButton {
+    grid-area: 6 / 1 / span 1 / span 1;
+}
+
+.invoiceTotal table, .invoiceTotal table * {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#invoiceFinalTotal {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/*@media only screen {*/
+/*    .invoice, .invoice * {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
+@media only print {
+    body, body * {
+        visibility: hidden;
+    }
+
+    .invoice, .invoice * {
+        visibility: visible;
+    }
 }

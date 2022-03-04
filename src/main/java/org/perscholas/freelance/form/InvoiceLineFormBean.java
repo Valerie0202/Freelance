@@ -13,5 +13,6 @@ public class InvoiceLineFormBean {
     private String notes;
     private Double quantity;
     private Integer invoiceId;
+    private Double invoiceLineTotal;
 
 }

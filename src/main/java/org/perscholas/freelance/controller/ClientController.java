@@ -76,8 +76,7 @@ public class ClientController {
     }
 
     @RequestMapping(value = "/createClientSubmit", method = { RequestMethod.POST, RequestMethod.GET })
-    public ModelAndView createClientSubmit(ClientFormBean form, Principal principal) throws Exception {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    public ModelAndView createClientSubmit(ClientFormBean form) throws Exception {
         ModelAndView response = new ModelAndView();
         Client client = new Client();
         User user = getLoggedInUser();

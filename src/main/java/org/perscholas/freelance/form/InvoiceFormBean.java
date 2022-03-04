@@ -15,5 +15,8 @@ public class InvoiceFormBean {
     private Client client;
     private Integer clientId;
     private String clientName;
+    private Double invoiceSubtotal;
+    private Double tax;
+    private Double invoiceTotal;
 
 }
