@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../include/header.jsp"/>
 
 <form method="POST" action="/registration/registerSubmit">
@@ -18,5 +19,11 @@
         <button type="submit">Register</button>
     </div>
 </form>
+
+<div class="errorMessages">
+    <c:forEach items="${errorMessages}" var="message">
+        <span style="color:red">${message}</span><br>
+    </c:forEach>
+</div>
 
 <jsp:include page="../include/footer.jsp"/>

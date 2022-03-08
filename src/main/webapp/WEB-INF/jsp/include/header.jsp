@@ -11,8 +11,6 @@
 
 <body>
 
-<%-- TODO add JavaScript --%>
-
 
 <div class="nav">
     <a href="/index">HOME</a>

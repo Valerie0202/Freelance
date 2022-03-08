@@ -14,10 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-// TODO redo security config
-
-// This is temporarily copied over from another project to override the default Spring security login page
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -32,9 +28,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 //these are unsecured paths
-                .antMatchers("/pub/**","/error/**","/login/**","/search","/index","/registration/**").permitAll()
+                .antMatchers("/pub/**","/error/**","/login/**","/index","/registration/**").permitAll()
                 //these are secured paths
-                .antMatchers("/admin/**","/user/**","/client/**").authenticated()
+                .antMatchers("/admin/**","/user/**","/client/**","/invoice/**").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login/login")

@@ -19,6 +19,5 @@ public interface InvoiceDAO extends JpaRepository<Invoice, Long> {
     @Query("select i from Invoice i where i.user.id = :userId")
     List<Invoice> getInvoices(@Param("userId") Integer userId);
 
-    // TODO add native query
 
 }

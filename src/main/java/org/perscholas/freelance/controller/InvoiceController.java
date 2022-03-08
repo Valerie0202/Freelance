@@ -55,9 +55,6 @@ public class InvoiceController {
         LOG.debug("Logged in user ID is " + user.getId());
 
         List<Invoice> invoices = invoiceDao.getInvoices(user.getId());
-        for(Invoice invoice : invoices) {
-            LOG.debug(String.valueOf(invoice));
-        }
 
         response.addObject("invoices", invoices);
         return response;
@@ -161,8 +158,6 @@ public class InvoiceController {
                 Client client = invoice.getClient();
                 List<InvoiceLine> invoiceLines = invoiceLineDao.getInvoiceLines(id);
                 LOG.debug(String.valueOf(invoiceLines));
-
-                // TODO add Lambda
 
                 response.addObject("user", user);
                 response.addObject("client", client);

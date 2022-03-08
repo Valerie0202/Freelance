@@ -1,5 +1,6 @@
 package org.perscholas.freelance.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.perscholas.freelance.database.dao.UserDAO;
 import org.perscholas.freelance.database.dao.UserRoleDAO;
 import org.perscholas.freelance.database.entity.User;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@Slf4j
 @RequestMapping("/registration")
 public class RegistrationController {
 
@@ -39,7 +41,6 @@ public class RegistrationController {
         return response;
     }
 
-    // TODO clean up registration controller
     @RequestMapping(value = "/registerSubmit", method = { RequestMethod.POST, RequestMethod.GET })
     public ModelAndView registerSubmit(@Valid RegisterFormBean form, BindingResult errors) throws Exception {
         ModelAndView response = new ModelAndView();
@@ -49,9 +50,7 @@ public class RegistrationController {
         if (errors.hasErrors()) {
             List<String> errorMessages = new ArrayList<>();
 
-            for ( FieldError error : errors.getFieldErrors() ) {
-                errorMessages.add(error.getDefaultMessage());
-            }
+            errors.getFieldErrors().forEach(error -> errorMessages.add(error.getDefaultMessage()));
 
             response.addObject("errorMessages", errorMessages);
             response.addObject("form", form);

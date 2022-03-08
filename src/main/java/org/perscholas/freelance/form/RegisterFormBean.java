@@ -22,15 +22,16 @@ public class RegisterFormBean {
     private Integer id;
 
     @NotEmpty(message = "Email is required.")
+    @Length(max = 100, message = "Email address must be under 100 characters in length.")
     @Pattern(regexp = "^.+@.+$" , message = "Invalid email format")
     @EmailUnique(message = "Email is already registered to an account.")
     private String email;
 
-    @Length(min = 0, max = 45,
+    @Length(max = 45,
             message = "First name must be shorter than 45 characters.")
     private String firstName;
 
-    @Length(min = 0, max = 45,
+    @Length(max = 45,
             message = "Last name must be shorter than 45 characters.")
     private String lastName;
 
@@ -40,22 +41,25 @@ public class RegisterFormBean {
     @UsernameUnique(message = "This username is already taken.")
     private String username;
 
-    @Length(min = 0, max = 64,
+    @Length(max = 64,
             message = "Address line 1 must be shorter than 64 characters.")
     private String address1;
 
-    @Length(min = 0, max = 64,
+    @Length(max = 64,
             message = "Address line 2 must be shorter than 64 characters.")
     private String address2;
 
-    @Pattern(regexp = "^\\(([0-9]{3})\\)\\s([0-9]{3})-([0-9]{4})$",
+    @Pattern(regexp = "^\\(([0-9]{3})\\) ([0-9]{3})-([0-9]{4})$",
             message="Please enter a valid phone number.")
     private String phone;
 
+    @NotEmpty(message = "Password field must not be blank.")
+    @Length(max = 50, message = "Password must be under 50 characters in length.")
     private String password;
-    private String confirmPassword;
 
-    private List<String> errorMessages = new ArrayList<>();
+    @NotEmpty(message = "Re-type password field must not be blank.")
+    @Length(max = 50, message = "Password must be under 50 characters in length.")
+    private String confirmPassword;
 
 
 

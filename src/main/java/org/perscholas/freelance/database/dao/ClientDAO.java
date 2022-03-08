@@ -13,7 +13,7 @@ public interface ClientDAO extends JpaRepository<Client, Long> {
 
     Client findById(@Param("id") Integer id);
 
-    @Query("select c from Client c where c.user.id = :userId")
+    @Query(value = "SELECT c.* FROM client c WHERE c.user_id = :userId", nativeQuery = true)
     List<Client> getClients(@Param("userId") Integer userId);
 
 }
