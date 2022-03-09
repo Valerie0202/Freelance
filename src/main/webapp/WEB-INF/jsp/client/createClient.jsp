@@ -14,7 +14,7 @@
 <form method="POST" action="/client/createClientSubmit" onsubmit="return validate();" id="clientForm">
 
     <input type="hidden" name="id" value="${form.id}">
-    <div class="registerform">
+    <div class="registerForm">
         <input class="formInput nameSubmission" type="text" name="firstName" placeholder="First Name" value="${form.firstName}">
         <input class="formInput nameSubmission" type="text" name="lastName" placeholder="Last Name"  value="${form.lastName}">
         <input class="formInput" type="text" name="email" id="email" placeholder="Email"  value="${form.email}">

@@ -5,7 +5,7 @@
 
     <h2>Create an account</h2>
 
-    <div class="registerform">
+    <div class="registerForm">
         <input type="text" name="username" value="${form.username}" placeholder="Username">
         <input type="text" name="email" value="${form.email}" placeholder="Email">
         <input type="text" name="firstName" value="${form.firstName}" placeholder="First Name">
@@ -16,7 +16,7 @@
         <input type="password" name="password" placeholder="Password"></td>
         <input type="password" name="confirmPassword" placeholder="Re-type Password"></td>
 
-        <button type="submit">Register</button>
+        <button type="submit"><h2 class="section-header">Register</h2></button>
     </div>
 </form>
 

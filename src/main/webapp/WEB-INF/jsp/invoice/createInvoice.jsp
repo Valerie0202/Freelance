@@ -9,7 +9,7 @@
         <h1>Create New Invoice</h1>
         <form method="POST" action="/invoice/createInvoiceSubmit">
             <input type="hidden" name="id" value="${form.id}">
-            <div class="registerform">
+            <div class="registerForm">
                 <select class="formInput" name="clientId">
                     <c:forEach items="${clients}" var="client">
                         <option value="${client.id}">${client.firstName} ${client.lastName}</option>
@@ -80,7 +80,7 @@
         </div>
         <form method="POST" action="/invoice/createInvoiceLineSubmit">
             <input type="hidden" name="invoiceId" value="${form.id}">
-            <div class="registerform">
+            <div class="registerForm">
                 <input class="formInput" type="text" name="item" placeholder="Line Item">
                 <input class="formInput" type="text" name="price" placeholder="Unit Price">
                 <input class="formInput" type="text" name="quantity" placeholder="Item Quantity">

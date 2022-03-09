@@ -2,18 +2,29 @@
     --f-red: #792525;
     --f-white: #f2f2f2;
     --f-gray: #1b1b1b;
+    --f-gray-light: #bbb;
     --f-shadow: #00000060;
+    --f-red-transparent: rgba(121, 37, 37, 0.75);
 }
 
 body {
     padding: 0;
     margin: 0;
+    background: var(--f-white);
 }
 
 h1, h2, h3, h4, h5 {
     font-family: 'Trebuchet MS', sans-serif;
 }
+
+p {
+    font-family: 'Palatino Linotype', Georgia;
+}
+
 /* TODO style everything pretty */
+
+
+/* Navigation bar */
 
 .nav {
     background-color: var(--f-red);
@@ -46,11 +57,14 @@ h1, h2, h3, h4, h5 {
     padding: 0.2em;
 }
 
-.logo {
+.logoNav img {
     height: 1.9em;
     padding: 0;
     margin: 0;
 }
+
+
+/* Footer */
 
 .container:after {
     content: "";
@@ -73,21 +87,30 @@ h1, h2, h3, h4, h5 {
     color: var(--f-white);
 }
 
+
+/* Main container */
+
 .container {
     margin: 3.2em 0.4em -2.5em;
     min-height: 100%;
 }
 
-.registerform {
+
+/* Input forms */
+
+.registerForm {
     display: flex;
     flex-direction: column;
 }
 
-.registerform * {
+.registerForm * {
     width: 20%;
     padding: 0.2em;
     margin: 0.6em;
 }
+
+
+/* Invoice */
 
 .invoice {
     display: grid;
@@ -188,6 +211,102 @@ h1, h2, h3, h4, h5 {
     font-weight: bold;
     text-decoration: underline;
 }
+
+/* Banner */
+
+.banner {
+    display: inline-block;
+    height: 25vw;
+    width: 100%;
+    margin-top: 0.2em;
+    background-color: var(--f-red);
+    background-repeat: no-repeat;
+    background-position: center 35%;
+    background-size: cover;
+    background-attachment: fixed;
+    font-size: 2rem;
+    text-align: center;
+    background-image: url("/pub/images/bannerBack.jpg");
+}
+
+.banner-text {
+    background: var(--f-red-transparent);
+    color: white;
+}
+
+
+/* Homepage */
+
+.content-wrapper {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.left-side{
+    width: 55%;
+}
+
+.right-side{
+    width: 44%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.right-side * {
+    align-self: stretch;
+}
+
+.segment {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: available;
+    min-width: 340px;
+    overflow: hidden;
+    padding: 3vw;
+    margin: 1vw;
+    border: 0.125em solid var(--f-gray-light);
+    border-radius: 0.3em;
+    background-color: var(--f-white);
+    box-shadow: 10px 10px 5px var(--f-shadow);
+}
+
+.section-header {
+    border-radius: 0.3em;
+    color: var(--f-white);
+    background: var(--f-red);
+    text-align: center;
+    width: 9ch;
+    padding: 0.5em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.paragraph, ul {
+    font-size: max(16px, 1.5vw);
+    color: var(--f-gray);
+    min-width: 35ch;
+    max-width: 65ch;
+    line-height: 1.8;
+}
+
+button {
+    border: none;
+}
+
+button h2{
+    border: 2px solid var(--f-red);
+}
+
+button h2:hover {
+    border: 2px solid var(--f-red);
+    background-color: var(--f-white);
+    color: var(--f-red);
+    cursor: pointer;
+}
+
+/* Print media settings */
 
 /*@media only screen {*/
 /*    .invoice, .invoice * {*/

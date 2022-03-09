@@ -6,7 +6,7 @@
 
     <!-- username and password input text fields must have the names username and password
          for spring boot to be able to authenticate the user -->
-    <div class="registerform">
+    <div class="registerForm">
         <input type="text" name="username" placeholder="Email">
         <input type="password" name="password" placeholder="Password">
 

@@ -19,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -51,8 +50,8 @@ public class ClientController {
         if ( id != null ) {
             // Update
             Client client = clientDao.findById(id);
-
             ClientFormBean form = new ClientFormBean();
+
             form.setEmail(client.getEmail());
             form.setFirstName(client.getFirstName());
             form.setLastName(client.getLastName());
@@ -94,15 +93,9 @@ public class ClientController {
     }
 
     public User getLoggedInUser() {
-        // this is boiler plate code to get the authentication information from spring security
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        // gets the username that the user logged in with
         String currentPrincipalName = authentication.getName();
-        // query the database to get the user object based on the logged in username
-        // in the case that you have used the email address to get the username
         return userDao.findByUsername(currentPrincipalName);
-        // or you would use this line to get the user by username if you used username to login
-        // return userDao.findByUsername(currentPrincipalName);
     }
 
 }
