@@ -83,9 +83,10 @@ public class RegistrationController {
                 ur.setUserRole("USER");
 
                 userRoleDao.save(ur);
+                response.setViewName("login/login");
+            } else {
+                response.setViewName("registration/register");
             }
-
-            response.setViewName("registration/register");
         }
 
         return response;

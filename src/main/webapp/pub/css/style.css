@@ -1,11 +1,13 @@
 :root {
     --f-red: #792525;
+    --f-red-light: #c43d3d;
+    --f-red-dark: #451515;
     --f-white: #f2f2f2;
     --f-gray: #1b1b1b;
     --f-gray-light: #bbb;
     --f-gray-lighter: #dbdbdb;
     --f-shadow: #00000060;
-    --f-blue-focus: #adb7e5;
+    --f-blue-focus: #cdd2e8;
     --f-red-transparent: rgba(121, 37, 37, 0.75);
 }
 
@@ -113,7 +115,11 @@ p {
     margin: 0.6em;
 }
 
-.registerForm input {
+.segment .section-header, .segment .formInput {
+    box-shadow: 3px 3px 5px var(--f-shadow);
+}
+
+.registerForm input, .registerForm textarea, .registerForm select {
     padding: 0.6em;
     margin: 1em 0.8em;
     font-family: 'Trebuchet MS', sans-serif;
@@ -125,12 +131,20 @@ p {
     background-color: var(--f-blue-focus);
 }
 
+.registerForm input::placeholder, .registerForm textarea::placeholder {
+    text-transform: uppercase;
+}
+
 #firstName, #lastName {
-    width: 44.4%;
+    width: 45%;
 }
 
 form {
-    width: 40%;
+    width: 100%;
+}
+
+.errorMessage {
+    /* TODO fill out */
 }
 
 /* Invoice */
@@ -295,13 +309,28 @@ form {
     box-shadow: 10px 10px 5px var(--f-shadow);
 }
 
+.segment.condensed {
+    width: 40%;
+    margin: 4em auto;
+}
+
+.segment.condensedTable {
+    width: fit-content;
+    margin: 4em auto;
+}
+
 .section-header {
-    border-radius: 0.3em;
+    border-radius: 0.2em;
+    border-top: 0.15em solid var(--f-red-light);
+    border-left: 0.15em solid var(--f-red-light);
+    border-bottom: 0.15em solid var(--f-red-dark);
+    border-right: 0.15em solid var(--f-red-dark);
     color: var(--f-white);
     background: var(--f-red);
     text-align: center;
-    width: 9ch;
+    width: fit-content;
     padding: 0.5em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     margin: 0;
 }
@@ -318,12 +347,21 @@ button {
     border: none;
 }
 
-button h2{
-    border: 2px solid var(--f-red);
+button h2:hover {
+    border: 0.15em solid var(--f-red);
+    background-color: var(--f-white);
+    color: var(--f-red);
+    cursor: pointer;
 }
 
-button h2:hover {
-    border: 2px solid var(--f-red);
+.submitButton {
+    align-self: end;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.submitButton:hover {
+    border: 0.15em solid var(--f-red);
     background-color: var(--f-white);
     color: var(--f-red);
     cursor: pointer;
@@ -337,7 +375,6 @@ button h2:hover {
     border: 2px solid var(--f-gray-light);
     margin: 25px 0;
     font-size: 0.9em;
-    font-family: sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     font-family: 'Trebuchet MS', sans-serif;
@@ -390,6 +427,31 @@ button h2:hover {
     border-bottom: 2px solid var(--f-red);
 }
 
+.tableTop {
+    width: 100%;
+}
+
+.tableTop * {
+    display: inline-block;
+}
+
+.tableTop a {
+    float: right;
+}
+
+.tableTop button {
+    width: fit-content;
+    font-weight: bold;
+    align-self: end;
+    justify-self: end;
+}
+
+.tableTop button:hover {
+    border: 0.15em solid var(--f-red);
+    background-color: var(--f-white);
+    color: var(--f-red);
+    cursor: pointer;
+}
 
 /* Print media settings */
 

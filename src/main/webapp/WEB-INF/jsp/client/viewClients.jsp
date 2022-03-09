@@ -7,8 +7,10 @@
 <%-- TODO fix these buttons then format the rest of the tables and forms --%>
 
 <div class="segment tableContainer">
-    <h2 class="section-header">Clients</h2>
-    <td><a href="/client/createClient"><button class="section-header">Create new client</button></a></td>
+    <div class="tableTop">
+        <h2 class="section-header">Clients</h2>
+        <a href="/client/createClient"><button class="section-header createClient">Create new client</button></a>
+    </div>
     <table class="styled-table">
         <thead>
             <tr>

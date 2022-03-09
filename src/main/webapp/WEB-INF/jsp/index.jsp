@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <jsp:include page="./include/header.jsp"/>
 
 <div class="banner">
@@ -46,11 +47,15 @@
         </div>
 
         <!-- Address and image of location on map are displayed -->
-        <div class="more-info segment">
+        <sec:authorize access="!isAuthenticated()">
+
+         <div class="more-info segment">
             <h2 class="section-header">Get started</h2>
             <p class="paragraph">Sign up for an account today to get started with us!</p>
             <a href="./registration/register"><button><h2 class="section-header">Register</h2></button></a>
         </div>
+
+        </sec:authorize>
     </div>
 </div>
 

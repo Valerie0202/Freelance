@@ -6,8 +6,9 @@
 <c:choose>
     <%-- If the ID is empty, we create a new invoice --%>
     <c:when test="${empty form.id}">
-        <h1>Create New Invoice</h1>
-        <form method="POST" action="/invoice/createInvoiceSubmit">
+        <div class="segment condensed">
+        <h2 class="section-header">Create New Invoice</h2>
+        <form method="POST" action="/invoice/createInvoiceSubmit" id="invoiceForm">
             <input type="hidden" name="id" value="${form.id}">
             <div class="registerForm">
                 <select class="formInput" name="clientId">
@@ -20,41 +21,47 @@
                 <input class="formInput" type="text" name="tax" placeholder="Tax">
                 <textarea class="formInput" maxlength="500" name="notes" placeholder="Notes (max 100 char)"></textarea>
 
-                <button class="formInput" type="submit">Create</button>
             </div>
         </form>
+        <button class="formInput section-header submitButton" type="submit" form="invoiceForm">Create</button>
     </c:when>
     <%-- If the ID is not empty, we display the invoice and allow user to add lines --%>
     <c:otherwise>
-        <h1>Add to Invoice</h1>
-        <div class="printable">
-            <table border="1">
-                <tr>
-                    <td><b>Client</b></td>
-                    <td><b>Invoice ID</b></td>
-                    <td><b>Project Title</b></td>
-                    <td><b>Date</b></td>
-                    <td><b>Notes</b></td>
-                </tr>
-                <tr>
-                    <td>${form.clientName}</td>
-                    <td>${form.id}</td>
-                    <td>${form.title}</td>
-                    <td>${form.date}</td>
-                    <td>${form.notes}</td>
-                </tr>
-                <tr>
-                    <td><b>Line ID</b></td>
-                    <td><b>Line Item</b></td>
-                    <td><b>Unit Price</b></td>
-                    <td><b>Quantity</b></td>
-                    <td><b>Notes</b></td>
-                    <td><b>Item Subtotal</b></td>
-                </tr>
+        <div class="segment condensedTable">
+        <h2 class="section-header">Add to Invoice</h2>
+        <div class="styled-table">
+            <table>
+                <thead>
+                    <tr>
+                        <td><b>Client</b></td>
+                        <td><b>Invoice ID</b></td>
+                        <td><b>Project Title</b></td>
+                        <td><b>Date</b></td>
+                        <td><b>Notes</b></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${form.clientName}</td>
+                        <td>${form.id}</td>
+                        <td>${form.title}</td>
+                        <td>${form.date}</td>
+                        <td>${form.notes}</td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <td><b>Line Item</b></td>
+                        <td><b>Unit Price</b></td>
+                        <td><b>Quantity</b></td>
+                        <td><b>Notes</b></td>
+                        <td><b>Item Subtotal</b></td>
+                    </tr>
+                </thead>
                 <c:set var="subtotal" scope="request" value="0"/>
                 <c:forEach items="${invoiceLines}" var="line">
+                <tbody>
                     <tr>
-                        <td>${line.id}</td>
                         <td>${line.item}</td>
                         <td>$${line.price}</td>
                         <td>${line.quantity}</td>
@@ -65,10 +72,11 @@
                             <c:out value="$${lineTotal}"/>
                         </td>
                     </tr>
+                </tbody>
                 </c:forEach>
+                <thead>
                 <tr>
                     <th>Subtotal</th>
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -76,9 +84,10 @@
                         <strong><c:out value="$${subtotal}"/></strong>
                     </td>
                 </tr>
+                </thead>
             </table>
         </div>
-        <form method="POST" action="/invoice/createInvoiceLineSubmit">
+        <form method="POST" action="/invoice/createInvoiceLineSubmit" id="invoiceLineForm">
             <input type="hidden" name="invoiceId" value="${form.id}">
             <div class="registerForm">
                 <input class="formInput" type="text" name="item" placeholder="Line Item">
@@ -86,11 +95,13 @@
                 <input class="formInput" type="text" name="quantity" placeholder="Item Quantity">
                 <textarea class="formInput" maxlength="500" name="notes" placeholder="Notes (max 200 char)"></textarea>
 
-                <button class="formInput" type="submit">Add Line</button>
             </div>
         </form>
-        <a href="/invoice/printInvoice?id=${form.id}"><button>Print invoice</button></a>
+        <button class="formInput section-header submitButton" type="submit" form="invoiceLineForm">Add line</button>
+        <a href="/invoice/printInvoice?id=${form.id}"><button class="section-header submitButton">Print invoice</button></a>
     </c:otherwise>
 </c:choose>
+
+</div>
 
 <jsp:include page="../include/footer.jsp"/>
