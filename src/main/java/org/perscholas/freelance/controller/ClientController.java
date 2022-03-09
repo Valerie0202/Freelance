@@ -49,10 +49,9 @@ public class ClientController {
         response.setViewName("client/createClient");
 
         if ( id != null ) {
-            // id has been passed to this form so it is an edit
+            // Update
             Client client = clientDao.findById(id);
 
-            // populate the form bean with the data loaded from the database
             ClientFormBean form = new ClientFormBean();
             form.setEmail(client.getEmail());
             form.setFirstName(client.getFirstName());
@@ -61,13 +60,11 @@ public class ClientController {
             form.setAddress1(client.getAddress1());
             form.setAddress2(client.getAddress2());
             form.setNotes(client.getNotes());
-            // since we loaded this from the database we know the id field
             form.setId(client.getId());
 
             response.addObject("form", form);
         } else {
-            // an id has not been passed so it is a create
-            // there is no data from the database so give an empty form bean
+            // Create
             ClientFormBean form = new ClientFormBean();
             response.addObject("form", form);
         }

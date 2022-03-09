@@ -13,6 +13,7 @@
 
 
 <div class="nav">
+    <a href="/index" class="logoNav"><img src="/pub/images/logo.png" alt="Logo" class="logo"/></a>
     <a href="/index">HOME</a>
     <sec:authorize access="isAuthenticated()">
         <a href="/client/viewClients">CLIENTS</a>
