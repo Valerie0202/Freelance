@@ -92,6 +92,20 @@ public class ClientController {
         return response;
     }
 
+    @RequestMapping(value = "/deleteClient", method = RequestMethod.GET)
+    public ModelAndView deleteClient(@RequestParam Integer id ) throws Exception {
+        ModelAndView response = new ModelAndView();
+
+        response.setViewName("redirect:/client/viewClients");
+
+        Client delete = clientDao.findById(id);
+        if ( delete != null ) {
+            clientDao.delete(delete);
+        }
+
+        return response;
+    }
+
     public User getLoggedInUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();

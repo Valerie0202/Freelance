@@ -1,9 +1,11 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <jsp:include page="../include/header.jsp"/>
-
-<h2>Invoice list</h2>
-<table border="1">
+<br>
+<div class="segment">
+    <h2 class="section-header">Invoices</h2>
+<table class="styled-table">
+    <thead>
     <tr>
         <td><b>Invoice ID</b></td>
         <td><b>Client</b></td>
@@ -12,6 +14,7 @@
         <td><b>Notes</b></td>
         <td><b>Edit</b></td>
     </tr>
+    </thead>
     <c:forEach items="${invoices}" var="invoice">
         <tr>
             <td>${invoice.id}</td>
@@ -23,5 +26,6 @@
         </tr>
     </c:forEach>
 </table>
+</div>
 
 <jsp:include page="../include/footer.jsp"/>

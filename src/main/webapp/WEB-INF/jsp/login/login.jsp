@@ -6,11 +6,12 @@
 
     <!-- username and password input text fields must have the names username and password
          for spring boot to be able to authenticate the user -->
-    <div class="registerForm">
+    <div class="registerForm segment">
+        <h2 class="section-header">Log in</h2>
         <input type="text" name="username" placeholder="Email">
         <input type="password" name="password" placeholder="Password">
 
-        <button type="submit">Submit</button>
+        <button type="submit"><h2 class="section-header">Log in</h2></button>
     </div>
 </form>
 <jsp:include page="../include/footer.jsp" />

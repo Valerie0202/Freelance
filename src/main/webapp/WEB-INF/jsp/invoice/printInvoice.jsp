@@ -25,7 +25,7 @@
         <p id="invoiceClientName">${client.firstName} ${client.lastName}</p>
         <p>${client.address1}</p>
         <p>${client.address2}</p>
-        <p>${client.cellPhone}</p>
+        <p>${client.phone}</p>
         <p>${client.email}</p>
     </div>
     <div class="invoiceReference">
@@ -93,8 +93,10 @@
 </div>
 
 <div class="printButton">
-    <button onClick="window.print()">Print this page
-</button></div>
+    <button onClick="window.print()">
+        <h2 class="section-header">Print</h2>
+    </button>
+</div>
 
 
 <jsp:include page="../include/footer.jsp"/>
