@@ -4,7 +4,6 @@
 
 <br>
 
-<%-- TODO fix these buttons then format the rest of the tables and forms --%>
 
 <div class="segment tableContainer">
     <div class="tableTop">
